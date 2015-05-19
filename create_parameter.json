@@ -1,0 +1,51 @@
+{
+  "Description": "Nanapi.jp VPC",
+  "Mappings": {
+    "VpcCidrBlock": {
+      "onishi": {
+        "VpcRange": "172.21.0.0/16"
+      },
+      "ooiwa": {
+        "VpcRange": "172.22.0.0/16"
+      },
+      "kagaya": {
+        "VpcRange": "172.23.0.0/16"
+      }
+    }
+  },
+  "Parameters": {
+    "Environment": {
+      "Description": "ex. onishi, ooiwa, kagaya",
+      "Type": "String",
+      "Default": "onishi"
+    }
+  },
+  "Resources": {
+    "Vpc": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "CidrBlock": {
+          "Fn::FindInMap": [
+            "VpcCidrBlock",
+            {
+              "Ref": "Environment"
+            },
+            "VpcRange"
+          ]
+        }
+        ,
+        "InstanceTenancy": "default",
+        "EnableDnsSupport": true,
+        "EnableDnsHostnames": true,
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "onishi-test"
+          }
+        ]
+      }
+    }
+  },
+  "Outputs": {
+  }
+}
