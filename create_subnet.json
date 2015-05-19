@@ -1,0 +1,59 @@
+{
+  "Description": "Nanapi.jp VPC",
+  "Mappings": {
+  },
+  "Parameters": {
+  },
+  "Resources": {
+    "Vpc": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "CidrBlock": "172.10.0.0/16",
+        "InstanceTenancy": "default",
+        "EnableDnsSupport": true,
+        "EnableDnsHostnames": true,
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "onishi-test"
+          }
+        ]
+      }
+    },
+    "SubnetAZb": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "172.10.1.0/24",
+        "AvailabilityZone": "ap-northeast-1b",
+        "VpcId": {
+          "Ref": "Vpc"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "onishi-test-b"
+          }
+        ]
+      }
+    },
+    "SubnetAZb": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "172.10.2.0/24",
+        "AvailabilityZone": "ap-northeast-1c",
+        "VpcId": {
+          "Ref": "Vpc"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "onishi-test-c"
+          }
+        ]
+      }
+    }
+  },
+  "Outputs": {
+
+  }
+}
