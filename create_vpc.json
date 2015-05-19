@@ -8,7 +8,7 @@
     "Vpc": {
       "Type": "AWS::EC2::VPC",
       "Properties": {
-        "CidrBlock": "172.10.0.0",
+        "CidrBlock": "172.10.0.0/16",
         "InstanceTenancy": "default",
         "EnableDnsSupport": true,
         "EnableDnsHostnames": true,
@@ -19,9 +19,8 @@
           }
         ]
       }
-    },
+    }
   },
   "Outputs": {
-
   }
 }
